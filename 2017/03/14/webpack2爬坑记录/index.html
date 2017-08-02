@@ -3,18 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>幻想乡</title>
+  <title>webpack2爬坑记录 | 幻想乡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Li Fei&apos;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="幻想乡">
-<meta property="og:url" content="https://hilifei.github.io/index.html">
+  <meta name="description" content="webpack是现在很热门的一个前端构建工具，采取了模块化的解决方案，把前端工程中的一切都当做一个个模块来处理。具体怎么科学的解释这玩意我也说不好，大家关心的是它能用来干啥，本着实用主义的原则，有用就是王道。有的同学可能要问了，我Grunt和Gulp玩的贼溜，还要学这个东西么？我想说的是潮流！潮流你懂么？做前端不就是赶潮流，会用工具，至于原理什么的都是浮云。其实Gulp里有个插件叫gulp-web">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack2爬坑记录">
+<meta property="og:url" content="https://hilifei.github.io/2017/03/14/webpack2爬坑记录/index.html">
 <meta property="og:site_name" content="幻想乡">
-<meta property="og:description" content="Li Fei&apos;s blog">
+<meta property="og:description" content="webpack是现在很热门的一个前端构建工具，采取了模块化的解决方案，把前端工程中的一切都当做一个个模块来处理。具体怎么科学的解释这玩意我也说不好，大家关心的是它能用来干啥，本着实用主义的原则，有用就是王道。有的同学可能要问了，我Grunt和Gulp玩的贼溜，还要学这个东西么？我想说的是潮流！潮流你懂么？做前端不就是赶潮流，会用工具，至于原理什么的都是浮云。其实Gulp里有个插件叫gulp-web">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://hilifei.github.io/2017/03/14/images/webpack.png">
+<meta property="og:updated_time" content="2017-08-02T11:48:09.313Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="幻想乡">
-<meta name="twitter:description" content="Li Fei&apos;s blog">
+<meta name="twitter:title" content="webpack2爬坑记录">
+<meta name="twitter:description" content="webpack是现在很热门的一个前端构建工具，采取了模块化的解决方案，把前端工程中的一切都当做一个个模块来处理。具体怎么科学的解释这玩意我也说不好，大家关心的是它能用来干啥，本着实用主义的原则，有用就是王道。有的同学可能要问了，我Grunt和Gulp玩的贼溜，还要学这个东西么？我想说的是潮流！潮流你懂么？做前端不就是赶潮流，会用工具，至于原理什么的都是浮云。其实Gulp里有个插件叫gulp-web">
+<meta name="twitter:image" content="https://hilifei.github.io/2017/03/14/images/webpack.png">
   
     <link rel="alternative" href="/atom.xml" title="幻想乡" type="application/atom+xml">
   
@@ -28,9 +32,6 @@
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
-    
-    
-  
   
       <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   
@@ -42,8 +43,8 @@
           rootUrl: '/',
           fancybox: true,
           animate: true,
-          isHome: true,
-          isPost: false,
+          isHome: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -215,9 +216,7 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-webpack2爬坑记录" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-webpack2爬坑记录" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/03/14/webpack2爬坑记录/" class="article-date">
@@ -233,12 +232,23 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/14/webpack2爬坑记录/">webpack2爬坑记录</a>
+    <h1 class="article-title" itemprop="name">
+      webpack2爬坑记录
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -298,33 +308,115 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/14/webpack2爬坑记录/">webpack2爬坑记录</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Li Fei 的个人博客">Li Fei</a></p>
+        <p><span>发布时间:</span>2017年03月14日 - 17时17分</p>
+        <p><span>最后更新:</span>2017年08月02日 - 19时48分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/14/webpack2爬坑记录/" title="webpack2爬坑记录">https://hilifei.github.io/2017/03/14/webpack2爬坑记录/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hilifei.github.io/2017/03/14/webpack2爬坑记录/　　作者: Li Fei" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
   
 </article>
 
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建工作目录"><span class="toc-number">1.</span> <span class="toc-text">创建工作目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搞一批测试文件"><span class="toc-number">2.</span> <span class="toc-text">搞一批测试文件</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
 
 
 
 
 
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
 
-  
-  
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/14/webpack2爬坑记录/">webpack2爬坑记录</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
