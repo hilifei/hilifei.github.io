@@ -22,6 +22,8 @@
     <link rel="icon" href="/img/favicon.png">
   
   
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -36,7 +38,7 @@
       var yiliaConfig = {
           rootUrl: '/',
           fancybox: true,
-          animate: false,
+          animate: true,
           isHome: false,
           isPost: false,
           isArchive: false,
@@ -54,7 +56,7 @@
     <header id="header" class="inner">
         <a href="/" class="profilepic">
             
-            <img src="/img/head.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            <img lazy-src="/img/head.jpg" class="js-avatar">
             
         </a>
 
@@ -175,7 +177,7 @@
         <header id="header" class="inner">
             <a href="/" class="profilepic">
                 
-                    <img src="/img/head.jpg" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
                 
             </a>
             <hgroup>
@@ -240,6 +242,10 @@
 
         <div class="article-info info-on-archive">
           
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/web前端/">web前端</a>
+    </div>
+
 
           
     <div class="article-tag tagcloud">
@@ -299,7 +305,7 @@
 
     <script>
         $(document).ready(function() {
-            var backgroundnum = 24;
+            var backgroundnum = 3;
             var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
             $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
             $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
