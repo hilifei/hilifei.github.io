@@ -1,0 +1,17 @@
+/* é›·è¾¾å›¾ç»„ä»¶æ ·å¼ */
+.h5_component_radar{
+}
+
+.h5_component_radar canvas{
+    position: absolute;
+    left: 0;
+    top: 0; /* ç”¨canvasåšåŠ¨ç”»ï¼Œä¼šè¿›è¡Œåˆ†å±‚ï¼Œè¦ç”¨åˆ°  z-index */
+    width: 100%;
+    height: 100%;
+}
+
+.h5_component_radar .text{
+    position: absolute;
+    font-size: 12px;
+    transition:all 1s;
+}
