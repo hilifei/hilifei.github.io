@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>快乐九宫格</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/swiper.min.css" rel="stylesheet">
+<link href="css/common.css" rel="stylesheet">
+<link href="css/index.css" rel="stylesheet">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jQueryRotate.2.2.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var lottery={
+	index:0,	//当前转动到哪个位置
+	count:9,	//总共有多少个位置
+	timer:0,	//setTimeout的ID，用clearTimeout清除
+	speed:200,	//初始转动速度
+	times:0,	//转动次数
+	cycle:21,	//转动基本次数：即至少需要转动多少次再进入抽奖环节
+	prize:4,	//中奖位置
+	init:function(id){
+		if ($("#"+id).find(".lottery-unit").length>0) {
+			$lottery = $("#"+id);
+			$units = $lottery.find(".lottery-unit");
+			this.obj = $lottery;
+			this.count = $units.length;
+			$lottery.find(".lottery-unit-"+this.index).addClass("active");
+		};
+	},
+	roll:function(){
+		var index = this.index;
+		var count = this.count;
+		var lottery = this.obj;
+		$(lottery).find(".lottery-unit-"+index).removeClass("active");
+		index += 1;
+		if (index>count-1){
+			index = 0;
+		};
+		$(lottery).find(".lottery-unit-"+index).addClass("active");
+		this.index=index;
+		return false;
+	},
+	stop:function(index){
+		this.prize=index;
+		return false;
+	}
+};
+
+function roll(){
+	lottery.times += 1;
+	lottery.roll();
+	if (lottery.times > lottery.cycle+10 && lottery.prize==lottery.index) {
+		$('#giftname').html(p);
+		$('#giftimg').attr('src','images/jgift0'+n+'.png');
+		showgiftbox();
+		//alert(lottery.prize+' / '+lottery.index);
+		clearTimeout(lottery.timer);
+		//lottery.prize=4;
+		lottery.times=0;
+		click=false;
+	}else{
+		if (lottery.times<lottery.cycle) {
+			lottery.speed -= 10;
+		}else if(lottery.times==lottery.cycle) {
+			//var index = Math.random()*(lottery.count)|0;
+			//lottery.prize = index;		
+		}else{
+			if (lottery.times > lottery.cycle+10 && ((lottery.prize==0 && lottery.index==7) || lottery.prize==lottery.index+1)) {
+				lottery.speed += 110;
+			}else{
+				lottery.speed += 20;
+			}
+		}
+		if (lottery.speed<40) {
+			lottery.speed=40;
+		};
+		//console.log(lottery.times+'^^^^^^'+lottery.speed+'^^^^^^^'+lottery.prize);
+		lottery.timer = setTimeout(roll,lottery.speed);
+	}
+	return false;
+}
+var click = false;
+var n = 6;
+var p = '五等奖';
+var rewards = ["特等奖","一等奖","二等奖","三等奖","四等奖","五等奖"];
+var stoped = [[4],[7],[3],[6],[1,5],[0,2]];
+$(function(){
+	$('#start').click(function(){
+	   if(click){ return false; }
+	//    $.ajax({
+	// 	  url : "/index.php/Chou/giftjgg.html",
+	// 	  type : "POST",
+	// 	  error : function(){
+	// 	     alert('出错了');
+	// 	  },
+	// 	  success : function(d){
+	// 	     var a = d.angle;
+	// 		 p = d.prize;
+	// 		 n = d.giftid;
+	// 		 var s = d.stoped;
+	// 		 lottery.init('lottery');
+	// 		 lottery.speed=100;
+	// 		 lottery.prize=s;
+	// 		 click=true;
+	// 		 roll();
+	// 	  }   
+    //    });
+			 n = Math.floor(Math.random()*6) + 1;
+             p = rewards[n-1];
+             var s = stoped[n-1][Math.floor(Math.random()*(stoped[n-1].length))];
+			 lottery.init('lottery');
+			 lottery.speed=100;
+			 lottery.prize=s;
+			 click=true;
+			 roll();
+	});	
+	
+	$('.getgift').click(function(){
+	   if($(this).hasClass('notread')){
+	      $(this).removeClass('notread');
+		  $('.giftfm').removeClass('hidden');
+	   }else{
+	      hidegiftbox();
+	   }
+	});
+	//关闭
+	$('.closegift').click(function(){
+	   hidegiftbox();
+	});
+	//规则
+	$('.showrolebox').click(function(){
+	   showrolebox();
+	});
+	$('.closerolebox').click(function(){
+	   hiderolebox();
+	});
+});
+function showgiftbox(){
+   $('.giftfm').addClass('hidden');
+   $('.getgift').addClass('notread');
+   $('.cover').fadeIn(500,function(){
+      $('.giftout,.giftbg,.giftclose').show();
+   });
+}
+function hidegiftbox(){
+   $('.giftout,.giftbg,.giftclose').hide(function(){
+      $('.cover').fadeOut();
+   });
+}
+function showrolebox(){
+   $('.cover').fadeIn();
+   $('.rolebox').show();
+}
+function hiderolebox(){
+   $('.rolebox').hide(function(){
+      $('.cover').fadeOut();
+   });
+}
+</script>
+
+<div class="kljgg"><img src="images/kljgg.png" class="img-responsive"><a href="javascript:void(0);" class="rolebtn showrolebox">活动规则</a></div>
+<div class="jggbox">
+   <div class="clearfix"><img src="images/jgg.png" class="img-responsive"></div>
+   <div class="cont" id="lottery">
+      <table width="100%" height="100%">
+         <tr>
+             <td height="33%" class="lottery-unit lottery-unit-0 active"><div class="prv"><img src="images/jgift06.png" class="img-responsive"><div class="toum"></div></div></td>
+             <td class="lottery-unit lottery-unit-1"><div class="prv"><img src="images/jgift05.png" class="img-responsive"><div class="toum"></div></div></td>
+             <td class="lottery-unit lottery-unit-2"><div class="prv"><img src="images/jgift06.png" class="img-responsive"><div class="toum"></div></div></td>
+         </tr>
+         <tr>
+             <td height="33%" class="lottery-unit lottery-unit-7"><div class="prv"><img src="images/jgift02.png" class="img-responsive"><div class="toum"></div></div></td>
+             <td><a href="javascript:void(0);" id="start"><img src="images/jgo.png" class="img-responsive"></a></td>
+             <td class="lottery-unit lottery-unit-3"><div class="prv"><img src="images/jgift03.png" class="img-responsive"><div class="toum"></div></div></td>
+         </tr>
+         <tr>
+             <td height="33%" class="lottery-unit lottery-unit-6"><div class="prv"><img src="images/jgift04.png" class="img-responsive"><div class="toum"></div></div></td>
+             <td class="lottery-unit lottery-unit-5"><div class="prv"><img src="images/jgift05.png" class="img-responsive"><div class="toum"></div></div></td>
+             <td class="lottery-unit lottery-unit-4"><div class="prv"><img src="images/jgift01.png" class="img-responsive"><div class="toum"></div></div></td>
+         </tr>
+      </table>
+   </div>
+</div>
+<div class="clearfix text-center wihte f-sm">
+<p class="mar-v-xs">开始时间：2017/6/12 14:59</p>
+<p class="mar-v-xs">结束时间：2017/8/12 14:59</p>
+</div>
+<div class="cover"></div>
+<div class="rolebox">
+   <div class="title">活动规则<a href="javascript:void(0);" class="icon closerolebox icon-close"></a></div>
+   <div class="cont">
+      <p>1、每人有三次机会，红包金额随机（0-300元）红包金额大小看你人品；</p>
+      <p>2、分享给好友，每多一位好友参加，就多一次抽奖机会，邀请越多，机会越多；</p>
+      <p>3、10元即可提现（每天0-8点由于官方限制不能提现，提现后会通过服务通知发到您的微信，注意查收噢；不要删掉了）</p>
+      <a href="javascript:void(0);" class="btns closerolebox">我知道了</a>
+   </div>
+</div>
+<div class="giftbg"><img src="images/giftbg.png" class="img-responsive"></div>
+<div class="giftout">
+   <div class="text-center org pad-v f-md">恭喜您，抽中<span id="giftname">三等奖</span></div>
+   <div class="clearfix">
+      <div class="pad-h"><img src="images/gift03.png" id="giftimg" class="img-responsive"></div>
+   </div>
+   <div class="clearfix giftfm hidden">
+      <div class="clearfix text-center mar-v-sm f-sm wihte pad-h-sm">记得留下您的联系方式，我们会尽快和您确认把奖品快递给您噢（瞄币和现金将会自动归入账户）</div>
+      <div class="clearfix">
+         <ul>
+            <li><input type="text" class="form-control" placeholder="姓名"></li>
+            <li class="mar-v-sm"><input type="text" class="form-control" placeholder="手机"></li>
+            <li><input type="text" class="form-control" placeholder="地址"></li>
+         </ul>
+      </div>
+   </div>
+   <div class="clearfix mar-v"><a href="javascript:void(0);" class="btns getgift notread">立即领取</a></div>
+</div>
+<div class="giftclose"><a href="javascript:void(0);" class="icon closegift icon-close"></a></div>
+</body>
+</html>
